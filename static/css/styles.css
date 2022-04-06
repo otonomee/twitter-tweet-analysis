@@ -1,0 +1,28 @@
+.search-input {
+    float:left;
+}
+
+.tweet-container {
+    margin-top:20px;
+}
+
+.tweet-list-container {
+
+}
+
+.tweet {
+
+}
+
+.user-info {
+    margin-top:20px;
+}
+
+.content-main {
+    border: 1px solid;
+    border-color: #20c997;
+    width: 50%;
+    height: max-content;
+    background-color: #d2f4eabf;
+    padding-top: 50px;
+}
