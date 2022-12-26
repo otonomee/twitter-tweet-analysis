@@ -1,10 +1,10 @@
 from requests_oauthlib import OAuth1Session
 
-consumer_key = 'hCE0VJnUGZ1iqhAJBaKerMqBo'
-consumer_secret = '0oj8dtMUGiWI9b48fL2ylwhXjvP3mEsdFIZ25AQOdocqHBfqbu'
-access_token = '4457516474-gstVDBrHwP6fNUrCsljtRgJyyLv55MdBqnyseCP'
-access_secret = '58Xx5RmGtLcWQTdaZCbjtw5hYxy9JkxKdbieEmyaO3WPj'
-bearer_token = f"Bearer AAAAAAAAAAAAAAAAAAAAAJVsawEAAAAAl6Q8X%2FFRODLD51lX773KlYA9zug%3DO0rYSD1Fhae2PQIPN6HxpW3IcDDxds6Z55AJx8hIzKlQj9galp"
+consumer_key = 'KGhVgjlQxnlLg1ed0kpEwNAQL'
+consumer_secret = 'sodSedt0j2vSeSZEe4Sit56sfns7UVbWIDfOzbyt0n1GPs2PBq'
+access_token = '4457516474-c7qLzTvDCBPzMofk7dv5sKhJtA4W1rOAeymUUkF'
+access_secret = '1yJlIluxt2xcSzXRHyQDcz8I3KivX3bzwQUU05nbxEGSU'
+bearer_token = f"Bearer AAAAAAAAAAAAAAAAAAAAAJVsawEAAAAAFBxEhB4fNZLfXanFFvNAN3LmS5E%3DYCioDYIcBeuvoUxerkfurUDCjbxOEXqMrrOLjmBQYZDIaBOoaA"
 
 def get_resource_token():
     request_token = OAuth1Session(

@@ -22,9 +22,19 @@ def bearer_oauth(r):
     r.headers["User-Agent"] = "v2TweetLookupPython"
     return r
 
+# @app.route('/', methods=['POST'])
+# def get_trending():
+#     url = 'https://api.twitter.com/1.1/trends/place.json/'
+#     request = requests.request("GET", url, auth=bearer_oauth).json()
+#     print(json.dumps(request))
+
+
 @app.route('/', methods=['POST'])
 def search_tweets():
     keywords = request.form.get('search_query')
+
+# def search_tweets():
+#     keywords = 'test'
 
     search_query = keywords.strip()
     search_query = re.sub(r"\W+", "", search_query) # only alphanumeric
@@ -49,9 +59,10 @@ def search_tweets():
             and raw_json_tweets['data'][i]['lang'] == 'en'
             ):
 
-                
+
                 time_posted = dateutil.parser.isoparse(raw_json_tweets['data'][j]['created_at'])
                 time_posted = time_posted.strftime('%B %d, %Y %I:%M %p')
+                #time_posted = time_posted - timedelta(hours=7) #adjust the UTC+7
 
                 profile_image = raw_json_tweets['includes']['users'][j]['profile_image_url'] or ''
 
@@ -65,21 +76,23 @@ def search_tweets():
                         'text': " ".join(['<span style="font-weight:500">{}</span>'.format(word) if word.strip() in highlight_words else word for word in raw_json_tweets['data'][i]['text'].split(' ')]),
                         'created_at': time_posted,
                         'referenced_tweet_id': raw_json_tweets['data'][i]['referenced_tweets'][0]['id']
-                        #,'context_annotations':  raw_json_tweets['data'][j]['context_annotations'],
+                        ,'context_annotations':  raw_json_tweets['data'][j]['context_annotations'],
                         }
                     )
                 except:
-                    print('thats problematic')
-        try:
-            if raw_json_tweets['data'][i]['referenced_tweets'][0]['type'] == 'retweeted':
-                for j in range(len(raw_json_tweets['includes']['tweets'])):
-                    for k in range(len(tweets)):
-                        #if raw_json_tweets['data'][i]['referenced_tweets'][0]['id'] == raw_json_tweets['includes']['tweets'][j]['id']:
-                        if tweets[k]['referenced_tweet_id'] == raw_json_tweets['data'][i]['referenced_tweets'][0]['id']:
-                            tweets[k]['text'] = '[RETWEET]: ' + raw_json_tweets['includes']['tweets'][j]['text']
-        except:
-            print('no referenced tweets?')
+                   print('thats problematic')
+    #print(tweets)
+            try:
+                if raw_json_tweets['data'][i]['referenced_tweets'][0]['type'] == 'replied_to':
+                    for j in range(len(raw_json_tweets['includes']['tweets'])):
+                        for k in range(len(tweets)):
+                            #if raw_json_tweets['data'][i]['referenced_tweets'][0]['id'] == raw_json_tweets['includes']['tweets'][j]['id']:
+                            if tweets[k]['referenced_tweet_id'] == raw_json_tweets['data'][i]['referenced_tweets'][0]['id']:
+                                tweets[k]['text'] = '[RETWEET]: ' + raw_json_tweets['includes']['tweets'][j]['text']
+            except:
+                print('no referenced tweets?')
 
+    #print(tweets)
     return render_template('home.html', tweets=tweets)
     #return tweets[0]
 
