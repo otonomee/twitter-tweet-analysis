@@ -51,11 +51,11 @@
             <div class="tweet-container">
                 <ul class="tweet-list-container list-group rounded">
                     {% for tweet in tweets %}
-                    <li class="tweet rounded bg-light list-group-item" style=";">
+                    <li class="tweet rounded bg-light list-group-item" style="">
                         <div class="user-info">
-                            <img class="rounded-circle" style="vertical-align:text-bottom;" src={{ tweet.profile_image }} />
+                            <img class="rounded-circle" style="vertical-align:text-bottom;" src={{ tweet.profile_image_url }} />
                             <p style="display:inline-block;margin: 20px 10px 0px;"><strong>{{ tweet.name }}</strong></p>
-                            <p style="display:inline-block;margin-top:20px;"><em>@{{ tweet.handle }}</em></p>
+                            <p style="display:inline-block;margin-top:20px;"><em>@{{ tweet.username }}</em></p>
                         </div>
                         <p>{{ tweet.created_at }}</P>
                         <p class="lead">

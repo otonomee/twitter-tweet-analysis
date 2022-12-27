@@ -144,23 +144,23 @@ def search_tweets():
     print('tweets',count)
     print(tweets)
 
-def get_trending():
-    url = 'https://api.twitter.com/1.1/trends/place.json?id=1'
-    request = requests.request("GET", url, auth=bearer_oauth).json()
-    srcDict = request[0]['trends'][0]
-    newDict = {}
+# def get_trending():
+#     url = 'https://api.twitter.com/1.1/trends/place.json?id=1'
+#     request = requests.request("GET", url, auth=bearer_oauth).json()
+#     srcDict = request[0]['trends'][0]
+#     newDict = {}
 
-    for key in srcDict:
-        if (srcDict[key] != None):
-            newDict[key] = srcDict[key]
+#     for key in srcDict:
+#         if (srcDict[key] != None):
+#             newDict[key] = srcDict[key]
 
-    #print(srcDict)
-    maxItem = max(newDict, key=lambda x: newDict['tweet_volume'])
-    print(maxItem)
-    #newDict = newDict.sort(key=lambda x: x['tweet_volume'])
+#     #print(srcDict)
+#     maxItem = max(newDict, key=lambda x: newDict['tweet_volume'])
+#     print(maxItem)
+#     #newDict = newDict.sort(key=lambda x: x['tweet_volume'])
 
-    #print(json.dumps(srcDict, indent=2))
-    #print(json.dumps(request, indent=4))
+#     #print(json.dumps(srcDict, indent=2))
+#     #print(json.dumps(request, indent=4))
 
 
 search_tweets()
